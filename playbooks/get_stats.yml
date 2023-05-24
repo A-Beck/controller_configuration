@@ -111,4 +111,19 @@
           - "{{ r_metrics['json']['awx_system_info']['samples'][0]['labels'] }}"
           - "{{ r_subscription['json']['LICENSE'] }}"
 
+    - name: Set Stats
+      ansible.builtin.set_stats:
+        data:
+          active_users: "{{ active_users | length }}"
+          number_of_subs: "{{ r_metrics['json']['awx_license_instance_total']['samples'][0]['value'] }}"
+          available_subs: "{{ r_metrics['json']['awx_license_instance_free']['samples'][0]['value'] }}"
+          number_of_orgs: "{{ r_metrics['json']['awx_organizations_total']['samples'][0]['value'] }}"
+          number_of_users: "{{ r_metrics['json']['awx_users_total']['samples'][0]['value'] }}"
+          number_of_teams: "{{ r_metrics['json']['awx_teams_total']['samples'][0]['value'] }}"
+          number_of_inv: "{{ r_metrics['json']['awx_inventories_total']['samples'][0]['value'] }}"
+          number_of_projects: "{{ r_metrics['json']['awx_projects_total']['samples'][0]['value'] }}"
+          number_of_JT: "{{ r_metrics['json']['awx_job_templates_total']['samples'][0]['value'] }}"
+          number_of_workflows: "{{ r_metrics['json']['awx_workflow_job_templates_total']['samples'][0]['value'] }}"
+          number_of_hosts: "{{ r_metrics['json']['awx_hosts_total']['samples'] }}"
+
 ...
